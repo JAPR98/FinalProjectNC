@@ -18,7 +18,5 @@ public interface ClientService {
 
     void saveAll(List<ClientDTO> clientDTOList);
 
-    List<ClientDTO> find(float price);
-
-
+    ClientDTO findById(String id);
 }

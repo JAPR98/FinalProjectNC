@@ -1,6 +1,8 @@
 package mx.edu.j2se.perez.CarRentalSystem.services.implementation;
 
 
+import mx.edu.j2se.perez.CarRentalSystem.dto.CarDTO;
+import mx.edu.j2se.perez.CarRentalSystem.entities.Car;
 import mx.edu.j2se.perez.CarRentalSystem.entities.Client;
 import mx.edu.j2se.perez.CarRentalSystem.repository.ClientRepository;
 import mx.edu.j2se.perez.CarRentalSystem.services.interfaces.ClientService;
@@ -28,6 +30,15 @@ public class ClientImplementation implements ClientService {
             dto.add(clientDTO);
         }
         return dto;
+    }
+
+    @Override
+    public ClientDTO findById(String id) {
+        Optional<Client> client = this.clientRepository.findById(id);
+        if (!client.isPresent()) {
+            return null;
+        }
+        return Helpers.modelMapper().map(client.get(), ClientDTO.class);
     }
 
     @Override
@@ -62,10 +73,5 @@ public class ClientImplementation implements ClientService {
             clients.add(cl);
         }
         this.clientRepository.saveAll(clients);
-    }
-
-    @Override
-    public List<ClientDTO> find(float price) {
-        return null;
     }
 }

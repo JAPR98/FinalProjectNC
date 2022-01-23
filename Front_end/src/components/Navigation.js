@@ -15,12 +15,12 @@ function Navigation() {
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item">
                             <Link className="nav-link " to="/cars">
-                                Show cars
+                                Rent
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/rental">
-                                Rental
+                                Review
                             </Link>
                         </li>
                         <li className="nav-item">

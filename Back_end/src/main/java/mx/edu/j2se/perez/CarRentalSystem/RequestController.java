@@ -1,4 +1,5 @@
 package mx.edu.j2se.perez.CarRentalSystem;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import mx.edu.j2se.perez.CarRentalSystem.dto.ClientDTO;
 import mx.edu.j2se.perez.CarRentalSystem.services.interfaces.CarService;
 import mx.edu.j2se.perez.CarRentalSystem.services.interfaces.ClientService;
@@ -24,6 +25,9 @@ public class RequestController {
 
     @Autowired
     private RentalService rentalService;
+
+    @JsonSerialize
+    public class EmptyJsonResponse { }
 
     @GetMapping(value = "/cars/getAll", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getAll() {
@@ -81,17 +85,29 @@ public class RequestController {
         }
     }
 
+    @GetMapping(value = "/client/find", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> findClient(@RequestParam(value = "email",
+            defaultValue = "null") String id) {
+        ClientDTO client = this.clientService.findById(id);
+        if (client == null) {
+            return new ResponseEntity(new EmptyJsonResponse(), HttpStatus.OK);
+        } else {
+            return ResponseEntity.ok(client);
+        }
+    }
+
+
     @GetMapping(value = "/rental/getByID", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Object> getRentalByID(@RequestParam(value = "id",
             defaultValue = "null") String id) {
-        if (id.equals("null" )) {
+        if (id.equals("null")) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         } else {
             RentalDTO rental = this.rentalService.findById(Integer.parseInt(id));
             if (rental != null) {
                 return ResponseEntity.ok(rental);
             } else {
-                return new ResponseEntity(HttpStatus.NOT_FOUND);
+                return new ResponseEntity(new EmptyJsonResponse(), HttpStatus.OK);
             }
         }
     }
@@ -114,7 +130,7 @@ public class RequestController {
             defaultValue = "null") String end) {
         RentalDTO rental = this.rentalService.rent(email,carID, start, end);
         if (rental == null) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return new ResponseEntity(new EmptyJsonResponse(), HttpStatus.OK);
         } else {
             return ResponseEntity.ok(rental);
         }

@@ -29,30 +29,4 @@ public interface CarRepository extends CrudRepository<Car,String> {
 
     @Query(value = "SELECT c FROM Car c ORDER BY c.pricePerDay DESC")
     List<Car> orderByPriceDesc();
-/*
-    @Query(value = "SELECT c FROM Car c WHERE c.pricePerDay <= :price ORDER BY c.pricePerDay ASC")
-    List<Car> filterByPriceLowerThanAsc(@Param("price") float price);
-
-    @Query(value = "SELECT c FROM Car c WHERE c.pricePerDay <= :price ORDER BY c.pricePerDay DESC")
-    List<Car> filterByPriceLowerThanDesc(@Param("price") float price);
-
-    @Query(value = "SELECT c FROM Car c WHERE c.pricePerDay <= :price ORDER BY c.pricePerDay ASC")
-    List<Car> filterByPriceLowerThanAsc(@Param("price") float price);
-
-    @Query(value = "SELECT c FROM Car c WHERE c.pricePerDay <= :price ORDER BY c.pricePerDay DESC")
-    List<Car> filterByPriceLowerThanDesc(@Param("price") float price);
-
-    @Query(value = "SELECT c FROM Car c WHERE c.pricePerDay >= :price ORDER BY c.pricePerDay ASC")
-    List<Car> filterByPriceGreaterThanAsc(@Param("price") float price);
-
-    @Query(value = "SELECT c FROM Car c WHERE c.pricePerDay >= :price ORDER BY c.pricePerDay DESC")
-    List<Car> filterByPriceGreaterThanDesc(@Param("price") float price);
-
-    @Query(value = "SELECT c FROM Car c WHERE c.carClass LIKE :class ORDER BY c.carClass ASC")
-    List<Car> filterByClassAsc(@Param("class") String carClass);
-
-    @Query(value = "SELECT c FROM Car c WHERE c.carClass LIKE :class ORDER BY c.carClass DESC")
-    List<Car> filterByClassDesc(@Param("class") String carClass);
-
- */
 }
