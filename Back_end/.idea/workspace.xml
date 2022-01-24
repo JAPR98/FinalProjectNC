@@ -7,11 +7,27 @@
     <list default="true" id="0dd4cf69-2d49-4e1e-99b2-5e98b8262684" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/j2se/perez/CarRentalSystem/RequestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/j2se/perez/CarRentalSystem/RequestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/j2se/perez/CarRentalSystem/repository/CarRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/j2se/perez/CarRentalSystem/repository/CarRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/j2se/perez/CarRentalSystem/services/implementation/ClientImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/j2se/perez/CarRentalSystem/services/implementation/ClientImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/j2se/perez/CarRentalSystem/services/interfaces/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/j2se/perez/CarRentalSystem/services/interfaces/ClientService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front_end/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Front_end/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mx/edu/j2se/perez/CarRentalSystem/dto/RentalDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mx/edu/j2se/perez/CarRentalSystem/dto/RentalDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mx/edu/j2se/perez/CarRentalSystem/RequestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mx/edu/j2se/perez/CarRentalSystem/RequestController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front_end/node_modules/.cache/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/node_modules/.cache/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/0.pack" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/0.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/12.pack" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/12.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/13.pack" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/13.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/14.pack" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/14.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/15.pack" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/15.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/16.pack" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/16.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/17.pack" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/17.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/18.pack" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/18.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/20.pack" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/20.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/23.pack" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/23.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/24.pack" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/24.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/8.pack" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/8.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/9.pack" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/9.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/index.pack" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/index.pack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/index.pack.old" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/node_modules/.cache/default-development/index.pack.old" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front_end/src/components/GetCars.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/src/components/GetCars.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front_end/src/components/Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Front_end/src/components/Navigation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Front_end/src/components/Rental.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +138,7 @@
       <workItem from="1642706902760" duration="7698000" />
       <workItem from="1642794538515" duration="5088000" />
       <workItem from="1642887706213" duration="1155000" />
-      <workItem from="1642896817555" duration="23751000" />
+      <workItem from="1642896817555" duration="30985000" />
     </task>
     <servers />
   </component>

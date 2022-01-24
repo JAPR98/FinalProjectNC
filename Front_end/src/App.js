@@ -6,7 +6,7 @@ import './App.css';
 import Login from './components/Login';
 import Navigation from './components/Navigation';
 import GetCars from './components/GetCars';
-import Rental from './components/Rental';
+import Review from './components/Review';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route exact path='/' element={< Login />}></Route>
           <Route exact path='/cars' element={< GetCars />}></Route>
-          <Route exact path='/rental' element={< Rental />}></Route>
+          <Route exact path='/review' element={< Review />}></Route>
         </Routes>
       </div>
     </Router>

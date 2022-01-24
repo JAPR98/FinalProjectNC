@@ -139,7 +139,7 @@ export default class GetCars extends Component {
                 if (Object.keys(res.data).length === 0) {
                     window.alert("The car is already rented for this time frame")   
                 } else {
-                    window.alert("Car rented successfully!\nYou can review the order details by using the following order ID: "+res.data.rentalID)
+                    window.alert("Car rented successfully!\n\nYou can review the order details by using the following order ID: "+res.data.rentalID)
                 }
             }
         }

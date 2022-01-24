@@ -96,9 +96,8 @@ public class RequestController {
         }
     }
 
-
     @GetMapping(value = "/rental/getByID", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> getRentalByID(@RequestParam(value = "id",
+    public ResponseEntity<Object> getRentalByID(@RequestParam(value = "rentalID",
             defaultValue = "null") String id) {
         if (id.equals("null")) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);

@@ -10,6 +10,8 @@ public class  RentalDTO implements Serializable {
 
     private Integer rentalID;
 
+    private String email;
+
     private String carID;
 
     private Date startTime;
