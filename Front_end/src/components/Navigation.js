@@ -25,7 +25,7 @@ function Navigation() {
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/">
-                                Coming Soon
+                                Register
                             </Link>
                         </li>
                     </ul>

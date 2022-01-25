@@ -61,13 +61,15 @@ public class RequestController {
         }
     }
 
-    @GetMapping(value = "/client/isRegistered", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> isRegisterd(@RequestParam(value = "email",
-            defaultValue = "null") String email, @RequestParam(value = "password",
+    @PostMapping(value = "/client/authenticate", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> isRegisterd(@RequestHeader(value = "email",
+            defaultValue = "null") String email, @RequestHeader(value = "password",
             defaultValue = "null") String password) {
+        System.out.println(email);
+        System.out.println(password);
         ClientDTO client = this.clientService.isRegistered(email, password);
         if (client == null) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return new ResponseEntity(new EmptyJsonResponse(), HttpStatus.OK);
         } else {
             return ResponseEntity.ok(client);
         }
@@ -79,7 +81,7 @@ public class RequestController {
             defaultValue = "null") String password) {
         ClientDTO client = this.clientService.register(email, password);
         if (client == null) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return new ResponseEntity(new EmptyJsonResponse(), HttpStatus.OK);
         } else {
             return ResponseEntity.ok(client);
         }
@@ -133,5 +135,12 @@ public class RequestController {
         } else {
             return ResponseEntity.ok(rental);
         }
+    }
+
+    @PostMapping(value = "/rental/cancel", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> returning(@RequestHeader(value = "rentalID",
+            defaultValue = "null") String rentalID) {
+        this.rentalService.canceling(rentalID);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

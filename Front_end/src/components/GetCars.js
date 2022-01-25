@@ -13,13 +13,18 @@ export default class GetCars extends Component {
         queryMade: '0',
         show: false,
         car: {},
-        message: ""
+        message: "",
+        current_date: ""
     }
 
     async componentDidMount() {
         var res = await axios.get('http://localhost:8090/cars/getAll');
+        var date = new Date();
+        var currentDate = date.getFullYear()+"-"+date.getMonth() + 1+"-"+ (date.getDate() + 1)
+        console.log(currentDate)
         this.setState({
-            cars: res.data
+            cars: res.data,
+            current_date: currentDate
         })
     }
 
@@ -161,7 +166,7 @@ export default class GetCars extends Component {
                     <Modal.Body>
                         {
                             <>
-                                <table className="table table-bordered table-striped table-secondary table-hover">
+                                <table className="table table-bordered table-striped table-secondary table-hover" style={{textAlign: 'center'}}>
                                     <thead>
                                         <tr>
                                             <th scope="col">Model</th>
@@ -209,11 +214,11 @@ export default class GetCars extends Component {
                             <form onSubmit={this.onSubmit}>
                                 <div className="form-group">
                                     <label for="startDate">Start Date</label>
-                                    <input type="date" className="form-control" id="startDate" />
+                                    <input type="date" className="form-control" id="startDate" min={this.state.current_date} />
                                 </div>
                                 <div className="form-group mb-4">
                                     <label for="endDate">End Date</label>
-                                    <input type="date" className="form-control" id="endDate" />
+                                    <input type="date" className="form-control" id="endDate" min={this.state.current_date}/>
                                 </div>
                                 <div className="form-group mt-1">
                                     <select className="custom-select form-control" id="className">

@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Button, Modal } from 'react-bootstrap';
 
 export default class Review extends Component {
 
     state = {
-        rentals: []
+        rentals: [],
+        rental: {},
+        car: {},
+        show: false
     }
 
     onSubmitRentalID = async e => {
@@ -34,7 +38,7 @@ export default class Review extends Component {
             window.alert("You must especify the user email")
         } else {
             var res = await axios.get("http://localhost:8090/rental/getPerClient",
-                { params: { email: data.get('userID') }})
+                { params: { email: data.get('userID') } })
             if (Object.keys(res.data).length === 0) {
                 window.alert("This user is not registered")
             } else {
@@ -45,9 +49,115 @@ export default class Review extends Component {
         }
     }
 
+    editRental = async (rentalID) => {
+        var res1 = await axios.get("http://localhost:8090/rental/getByID",
+            {
+                params: {
+                    rentalID: rentalID,
+                }
+            })
+        var res2 = await axios.get("http://localhost:8090/cars/getByID",
+            {
+                params: {
+                    id: res1.data.carID
+                }
+            })
+        this.setState({
+            rental: res1.data,
+            car: res2.data,
+            show: true,
+        })
+    }
+
+    handleClose = () => {
+        this.setState({
+            show: false,
+        })
+    }
+
+    canceling = async () => {
+        var data = new FormData();
+        data.append("email", this.state.rental.email);
+        data.append("password", document.getElementById("password").value);
+        var date = new Date();
+        var currentDate = date.getFullYear()+"-"+date.getMonth() + 1+"-"+ date.getDate()
+        if (currentDate >= this.state.rental.startTime) {
+            window.alert("Rentals can only be cancelled up to 1 day before the start date.")
+        } else {
+            if (this.state.rental.rentalStatus === "CANCELED") {
+                window.alert("This rental is already canceled")
+            } else {
+                if (data.get('password') === '') {
+                    window.alert("If you want to cancel a rental, you must type the password");
+                } else {
+                    var res = await axios.post("http://localhost:8090/client/authenticate", {}, {
+                        headers: {
+                            email: data.get('email'),
+                            password: data.get('password'),
+                        }
+                    })
+                    if (Object.keys(res.data).length === 0) {
+                        window.alert("The password is incorrect. Please try again")
+                    } else {
+                        res = await axios.post("http://localhost:8090/rental/cancel", {}, {
+                            headers: {
+                                rentalID: this.state.rental.rentalID
+                            }
+                        })
+                        window.alert("Rental canceled successfully")
+                    }
+                }
+            }
+        }
+    }
+
+
     render() {
         return (
             <div className="container autosize">
+                <Modal show={this.state.show} onHide={this.handleClose} centered>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Edit the rental</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        {
+                            <>
+                                <table className="table table-bordered table-striped table-secondary table-hover" style={{ textAlign: 'center' }}>
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Car Model</th>
+                                            <th scope="col">Start Date</th>
+                                            <th scope="col">End date</th>
+                                            <th scope="col">Total price</th>
+                                            <th scope="col">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <td>{this.state.car.model}</td>
+                                        <td>{this.state.rental.startTime}</td>
+                                        <td>{this.state.rental.endTime}</td>
+                                        <td>{this.state.rental.totalPrice}</td>
+                                        <td>{this.state.rental.rentalStatus}</td>
+                                    </tbody>
+                                </table>
+                                <form>
+                                    <div className="form-group">
+                                        <label for="email">Type the password of the account used to rent this car</label>
+                                        <input type="password" className="form-control" id="password" placeholder="Enter yor password" />
+                                    </div>
+                                </form>
+                            </>
+                        }
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={this.handleClose}>
+                            Close
+                        </Button>
+                        <Button variant="danger" onClick={this.canceling}>
+                            Cancel the rental
+                        </Button>
+                    </Modal.Footer>
+                </Modal>
                 <div className="row">
                     <div className="col-md-3 mt-4">
                         <div className="card card-body text-white bg-secondary mb-2">
@@ -93,7 +203,7 @@ export default class Review extends Component {
                             <tbody>
                                 {
                                     this.state.rentals.map(rental => (
-                                        <tr key={rental.rentalID}  role='button'>
+                                        <tr key={rental.rentalID} role='button' onDoubleClick={() => this.editRental(rental.rentalID)}>
                                             <td>{rental.rentalID}</td>
                                             <td>{rental.email}</td>
                                             <td>{rental.startTime}</td>

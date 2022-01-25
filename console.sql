@@ -58,25 +58,20 @@ INSERT INTO car (CARID, CLASS, BRAND, MODEL, YEAR, TRANSMISSION, COLOR, PRICEPER
 #Some clients
 DELETE FROM client WHERE TRUE;
 INSERT INTO client VALUES ('japerezro@hotmail.com', '1234567890');
-INSERT INTO client VALUES ('mayra@gmail.com', 'qwerty');
-INSERT INTO client VALUES ('cckjons@yahoo.com', 'abcdef');
 
 #Some transactions
 DELETE FROM rental WHERE TRUE;
 
 INSERT INTO rental (email, carID, start_time, end_time)
-VALUES ('japerezro@hotmail.com','13ADSS9J0', '2021-01-01', '2021-01-05');
+VALUES ('japerezro@hotmail.com','13ADSS9J0', '2022-01-26', '2022-01-27');
 INSERT INTO rental (email, carID, start_time, end_time, rental_status)
-VALUES ('japerezro@hotmail.com','13ADPS9J1', '2021-01-09', '2021-01-12', 'RETURNED');
+VALUES ('japerezro@hotmail.com','13ADPS9J1', '2022-01-29', '2022-01-30', 'CANCELED');
 
 ALTER TABLE rental AUTO_INCREMENT = 0;
 
 SELECT * FROM Car ORDER BY priceperday ASC;
 
 SELECT * FROM CAR  WHERE class LIKE 'sport' ORDER BY class ASC;
-
-SELECT * FROM car c WHERE c.carID NOT IN (SELECT rental.carID FROM rental
-WHERE NOT (('2021-01-09' < start_time OR end_time < '2021-01-05') OR rental_status LIKE 'RETURNED'));
 
 #------------------------------------Some procedures----------------------------------------------------#
 
@@ -93,12 +88,12 @@ BEGIN
     IF priceOrder like 'asc' THEN
         IF class NOT LIKE 'null' THEN
             SELECT * FROM car c WHERE c.carID NOT IN (SELECT rental.carID FROM rental
-            WHERE NOT ((end < start_time OR end_time < start) OR rental_status LIKE 'RETURNED'))
+            WHERE NOT ((end < start_time OR end_time < start) OR rental_status LIKE 'CANCELED'))
             AND c.class LIKE class AND CAST(lowestprice AS UNSIGNED INTEGER) <= c.priceperday AND
             CAST(highestprice AS UNSIGNED INTEGER) >= c.priceperday ORDER BY c.priceperday ASC;
         ELSE
             SELECT * FROM car c WHERE c.carID NOT IN (SELECT rental.carID FROM rental
-            WHERE NOT ((end < start_time OR end_time < start) OR rental_status LIKE 'RETURNED'))
+            WHERE NOT ((end < start_time OR end_time < start) OR rental_status LIKE 'CANCELED'))
             AND CAST(lowestprice AS UNSIGNED INTEGER) <= c.priceperday AND
             CAST(highestprice AS UNSIGNED INTEGER) >= c.priceperday
             ORDER BY c.priceperday ASC;
@@ -106,12 +101,12 @@ BEGIN
     ELSE
         IF class NOT LIKE 'null' THEN
             SELECT * FROM car c WHERE c.carID NOT IN (SELECT rental.carID FROM rental
-            WHERE NOT ((end < start_time OR end_time < start) OR rental_status LIKE 'RETURNED'))
+            WHERE NOT ((end < start_time OR end_time < start) OR rental_status LIKE 'CANCELED'))
             AND c.class LIKE class AND CAST(lowestprice AS UNSIGNED INTEGER) <= c.priceperday AND
             CAST(highestprice AS UNSIGNED INTEGER) >= c.priceperday ORDER BY c.priceperday DESC;
         ELSE
             SELECT * FROM car c WHERE c.carID NOT IN (SELECT rental.carID FROM rental
-            WHERE NOT ((end < start_time OR end_time < start) OR rental_status LIKE 'RETURNED'))
+            WHERE NOT ((end < start_time OR end_time < start) OR rental_status LIKE 'CANCELED'))
             AND CAST(lowestprice AS UNSIGNED INTEGER) <= c.priceperday AND
             CAST(highestprice AS UNSIGNED INTEGER) >= c.priceperday
             ORDER BY c.priceperday DESC;
@@ -122,7 +117,7 @@ END
 
 DROP PROCEDURE register;
 DELIMITER ;;
-CREATE PROCEDURE register(IN email VARCHAR(319), IN car_ID VARCHAR )
+CREATE PROCEDURE register(IN email VARCHAR(319), IN password VARCHAR(10))
 BEGIN
     IF email NOT IN (SELECT c.email FROM client c) THEN
         INSERT INTO client VALUES (email, password);
@@ -142,11 +137,20 @@ IN start VARCHAR(10),
 IN end VARCHAR(10))
 BEGIN
     IF carID_ IN (SELECT c.carID FROM car c WHERE c.carID NOT IN (SELECT rental.carID FROM rental
-    WHERE NOT ((end < start_time OR end_time < start) OR rental_status LIKE 'RETURNED'))) THEN
+    WHERE NOT ((end < start_time OR end_time < start) OR rental_status LIKE 'CANCELED'))) THEN
         INSERT INTO rental(email, carID, start_time, end_time) VALUES (email_, carID_, start, end);
         SELECT * FROM rental ORDER BY rental.rentalID DESC LIMIT 1;
     ELSE
         SELECT * FROM rental WHERE rentalID = 0;
     END if;
+END
+;;
+
+DROP PROCEDURE canceling;
+DELIMITER ;;
+CREATE PROCEDURE canceling(
+IN rental_ID INTEGER)
+BEGIN
+    UPDATE rental SET rental_status = 'CANCELED' WHERE rentalID = rental_ID;
 END
 ;;

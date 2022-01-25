@@ -6,6 +6,7 @@
         <set>
           <option value="username" />
           <option value="email" />
+          <option value="rentalID" />
         </set>
       </option>
     </inspection_tool>

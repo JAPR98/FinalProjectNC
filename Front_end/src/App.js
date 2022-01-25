@@ -3,10 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import 'jquery/dist/jquery.min.js';
 import './App.css';
-import Login from './components/Login';
 import Navigation from './components/Navigation';
 import GetCars from './components/GetCars';
 import Review from './components/Review';
+import Register from './components/Register';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
       <Navigation />
       <div className="containter-p-4">
         <Routes>
-          <Route exact path='/' element={< Login />}></Route>
+          <Route exact path='/' element={< Register />}></Route>
           <Route exact path='/cars' element={< GetCars />}></Route>
           <Route exact path='/review' element={< Review />}></Route>
         </Routes>

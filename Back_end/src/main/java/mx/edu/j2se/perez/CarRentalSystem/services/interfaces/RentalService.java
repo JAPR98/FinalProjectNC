@@ -26,4 +26,6 @@ public interface RentalService {
     void deleteById(int id);
 
     List<RentalDTO> find(float price);
+
+    void canceling(String rentalID);
 }

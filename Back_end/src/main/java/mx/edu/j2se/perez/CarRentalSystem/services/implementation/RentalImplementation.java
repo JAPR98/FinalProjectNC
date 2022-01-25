@@ -83,4 +83,9 @@ public class RentalImplementation implements RentalService {
     public List<RentalDTO> find(float price) {
         return null;
     }
+
+    @Override
+    public void canceling(String rentalID) {
+        this.rentalRepository.canceling(rentalID);
+    }
 }

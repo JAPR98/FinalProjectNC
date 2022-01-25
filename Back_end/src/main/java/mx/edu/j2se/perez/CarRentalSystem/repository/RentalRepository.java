@@ -22,4 +22,7 @@ public interface RentalRepository extends CrudRepository<Rental, Integer> {
                           @Param("carID") String carID,
                           @Param("start") String start,
                           @Param("end") String end);
+
+    @Query(value = "{call canceling(:rentalID)}", nativeQuery = true)
+    void canceling(@Param("rentalID") String rentalID);
 }
